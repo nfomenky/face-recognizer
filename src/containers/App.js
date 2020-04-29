@@ -37,6 +37,8 @@ const initialState = {
   }     
 }
 
+const heroku = 'https://nameless-oasis-61801.herokuapp.com';
+
 
 class App extends Component {
   constructor() {
@@ -78,7 +80,7 @@ class App extends Component {
 
   onButtonSubmit = () => {
     this.setState({ imageUrl: this.state.input });
-    fetch('http://localhost:3000/imageurl', {
+    fetch(`${heroku}/imageurl`, {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -88,7 +90,7 @@ class App extends Component {
     .then(response => response.json())
     .then(response => {
       if (response) {
-        fetch('http://localhost:3000/image', {
+        fetch(`${heroku}/image`, {
           method: 'put',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({
@@ -132,8 +134,8 @@ class App extends Component {
             </div> :
             (
               this.state.route === 'signin' || this.state.route === 'signout' ?
-                <SignIn onRouteChange={this.onRouteChange} loadUser={this.loadUser} /> :
-                <Register onRouteChange={this.onRouteChange} loadUser={this.loadUser} />
+                <SignIn onRouteChange={this.onRouteChange} loadUser={this.loadUser} heroku={heroku} /> :
+                <Register onRouteChange={this.onRouteChange} loadUser={this.loadUser} heroku={heroku} />
             )
         }
       </div>
