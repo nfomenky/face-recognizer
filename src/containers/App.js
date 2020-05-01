@@ -89,7 +89,7 @@ class App extends Component {
     })
     .then(response => response.json())
     .then(response => {
-      if (response) {
+      if (response !== 'unable to work with api') {
         fetch(`${heroku}/image`, {
           method: 'put',
           headers: {'Content-Type': 'application/json'},
@@ -103,6 +103,9 @@ class App extends Component {
         })
         .catch(console.log);
         this.displayFaceBox(this.calculateFaceLocation(response));
+        document.getElementById('errorPrompt').innerHTML = '';
+      } else {
+        document.getElementById('errorPrompt').innerHTML = 'Invalid image link. JPG image links only';
       }
     })
     .catch(err => console.log(err));
