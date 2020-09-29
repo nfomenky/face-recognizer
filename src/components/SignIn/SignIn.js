@@ -56,7 +56,7 @@ class SignIn extends React.Component {
                             <label className="db fw6 lh-copy f6" htmlFor="password">Password</label>
                             <input 
                             className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" 
-                            type="password" name="password" 
+                            type="password" name="password" required
                             id="password"
                             onChange={this.onPasswordChange} />
                         </div>
